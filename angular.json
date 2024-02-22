@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-combobox/src/assets/css/ngx-combobox.css",
               "src/styles.css"
             ],
             "scripts": []

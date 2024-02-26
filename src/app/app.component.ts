@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +8,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngx-combobox-demo';
+  public currentForm: FormGroup = this.fb.group({
+    inputText: ['', []],
+  });
+
+  constructor(private fb: FormBuilder) {}
+
+  public returnProperties = {};
+
   public propertiesReturn = ['id', 'name', 'lastName'];
 
   public namesValue = ['name', 'lastName'];
 
-  public print(event: any) {
-    console.log(event);
+  public print(valueOutput: any) {
+    this.returnProperties = valueOutput;
+    console.log(valueOutput);
   }
-  
   public dataList = [
     { id: 1, name: 'Luis', lastName: 'Perez', age: 25 },
     { id: 2, name: 'Maria', lastName: 'Gomez', age: 30 },

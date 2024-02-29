@@ -8,11 +8,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   title = 'ngx-combobox-demo';
+  public disabledInput: boolean = false;
   public currentForm: FormGroup = this.fb.group({
-    inputText: ['', []],
+    inputText: [{ value: '', disabled: false }, []],
   });
 
   constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.currentForm.patchValue({
+      inputText: 'No se aplicará si se encuentra <defaultSelected>',
+    });
+  }
 
   public returnProperties = {};
 
@@ -24,6 +31,16 @@ export class AppComponent {
     this.returnProperties = valueOutput;
     console.log(valueOutput);
   }
+
+  public disabled() {
+    if (this.disabledInput) {
+      this.currentForm.disable();
+    } else {
+      this.currentForm.enable();
+    }
+    this.disabledInput = !this.disabledInput;
+  }
+
   public dataList = [
     { id: 1, name: 'Luis', lastName: 'Perez', age: 25 },
     { id: 2, name: 'Maria', lastName: 'Gomez', age: 30 },
